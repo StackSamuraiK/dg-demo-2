@@ -1,0 +1,176 @@
+@import './tailwind.css';
+
+
+
+:root {
+  --background: #0B1F3A;
+  --foreground: #FFFFFF;
+  --primary: #0B1F3A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #132F5B;
+  --secondary-foreground: #FFFFFF;
+  --accent: #D4AF37;
+  --accent-dark: #C9A227;
+  --accent-foreground: #0B1F3A;
+  --muted: #6B7280;
+  --muted-foreground: #9CA3AF;
+  --card: #132F5B;
+  --card-foreground: #FFFFFF;
+  --border: #1E3A5F;
+  --input: #1E3A5F;
+  --ring: #D4AF37;
+  --radius: 0.75rem;
+  --font-sans: 'DM Sans', sans-serif;
+  --light-bg: #F5F7FA;
+  --light-foreground: #0B1F3A;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth !important;
+  }
+
+  /* Ensure smooth scroll works for all elements */
+  html, body {
+    scroll-padding-top: 80px;
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+  }
+}
+
+@layer components {
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.hidden-init {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .glass-card {
+    background: rgba(19, 47, 91, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  .glass-card-light {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .gold-outline-btn {
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .gold-outline-btn:hover {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  .gold-fill-btn {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .gold-fill-btn:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-1px);
+  }
+
+  .noise-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .arch-container {
+    border-top-left-radius: 12rem;
+    border-top-right-radius: 12rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+
+  .pixel-gap-grid {
+    gap: 1px;
+    background-color: var(--border);
+  }
+
+  .service-card-hover {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s ease,
+                border-color 0.3s ease;
+  }
+
+  .service-card-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 14s linear infinite;
+}
+
+@keyframes pulse-gold {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2.5s ease-in-out infinite;
+}
+
+@keyframes float-up {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float-up 5s ease-in-out infinite;
+}
