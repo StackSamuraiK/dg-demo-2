@@ -28,7 +28,7 @@ export default function OwnerVisionSection({ className = '' }: OwnerVisionSectio
               <div className="aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#D4AF37]/30 shadow-2xl relative">
                 {/* Placeholder image - professional business portrait */}
                 <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=750&fit=crop&crop=faces"
+                  src="/hero-image.jpeg"
                   alt="DG International Founder - Professional portrait"
                   className="w-full h-full object-cover object-center"
                 />
