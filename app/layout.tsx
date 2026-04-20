@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: 'DG International — Cross-Border Structuring & Advisory',
   description: 'DG International provides cross-border structuring, trade facilitation, and capital advisory for businesses operating across India, UAE, ASEAN, Singapore, and Hong Kong.',
   icons: {
-    icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
+    icon: [{ url: '/logo.png', type: 'image/png' }],
   },
 };
 
