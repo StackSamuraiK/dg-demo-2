@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 
 interface Service {
   id: string;
@@ -103,14 +103,6 @@ const services: Service[] = [
 ];
 
 export default function ServicesSection() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (dir: 'left' | 'right') => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: dir === 'right' ? 420 : -420, behavior: 'smooth' });
-    }
-  };
-
   return (
     <section id="services" className="py-20 bg-[#163A66] relative overflow-hidden">
       <div className="noise-overlay" />
@@ -119,7 +111,7 @@ export default function ServicesSection() {
       <div className="bg-[#0D2347] rounded-[2.5rem] mx-4 md:mx-8 overflow-hidden relative border border-[#1E3A5F]">
         <div className="noise-overlay" />
 
-        <div className="px-8 md:px-12 pt-14 pb-10 flex items-end justify-between relative z-10">
+        <div className="px-8 md:px-12 pt-14 pb-10 relative z-10">
           <div>
             <span className="section-label block mb-4">What We Do</span>
             <h2
@@ -129,41 +121,17 @@ export default function ServicesSection() {
               Our Services
             </h2>
           </div>
-          <div className="flex gap-3 pb-2">
-            <button
-              onClick={() => scroll('left')}
-              className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center hover:border-[#D4AF37]/60 hover:text-[#D4AF37] transition-colors text-white"
-              aria-label="Scroll left"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center hover:border-[#D4AF37]/60 hover:text-[#D4AF37] transition-colors text-white"
-              aria-label="Scroll right"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          </div>
         </div>
 
-        {/* Horizontal scroll cards */}
-        <div
-          ref={scrollRef}
-          className="flex gap-5 overflow-x-auto pb-12 px-8 md:px-12 snap-x"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
+        {/* Grid cards */}
+        <div className="px-8 md:px-12 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((svc, i) => (
             <div
               key={svc.id}
-              className="min-w-75 md:min-w-85 snap-center group relative shrink-0"
+              className="group relative"
             >
               <div
-                className="relative h-95 bg-[#132F5B] border border-[#1E3A5F] rounded-2xl p-8 flex flex-col justify-between service-card-hover"
+                className="relative h-full bg-[#132F5B] border border-[#1E3A5F] rounded-2xl p-8 flex flex-col justify-between service-card-hover"
                 style={{ animationDelay: `${i * 100}ms` }}
               >
                 {/* Card offset shadow */}
