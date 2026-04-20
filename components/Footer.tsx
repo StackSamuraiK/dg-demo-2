@@ -47,9 +47,9 @@ export default function Footer() {
             </span>
             <SocialLinks
               links={[
-                { name: 'linkedin', url: '#', ariaLabel: 'LinkedIn' },
-                { name: 'facebook', url: '#', ariaLabel: 'Facebook' },
-                { name: 'instagram', url: '#', ariaLabel: 'Instagram' }
+                { name: 'linkedin', url: 'https://www.linkedin.com/in/dheeraj-galani-68006438b?utm_source=share_via&utm_content=profile&utm_medium=member_ios', ariaLabel: 'LinkedIn' },
+                { name: 'facebook', url: 'https://www.facebook.com/people/DGInternational/61568043115188/?mibextid=wwXIfr&rdid=qCdKZMdq5CyyrdTq&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18JypDjdZz%2F%3Fmibextid%3DwwXIfr%26ref%3D1', ariaLabel: 'Facebook' },
+                { name: 'instagram', url: 'https://www.instagram.com/dginternational_india?igsh=eHVyeDZyOXltcHdw&utm_source=qr', ariaLabel: 'Instagram' }
               ]}
               className="bg-white/5 rounded-2xl px-6 py-4 hover:bg-white/10 transition-all duration-300"
               iconSize={28}

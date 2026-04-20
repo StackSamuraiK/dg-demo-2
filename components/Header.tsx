@@ -25,9 +25,9 @@ export default function Header() {
   ];
 
   const socialLinks = [
-    { name: 'linkedin' as const, url: '#' },
-    { name: 'facebook' as const, url: '#' },
-    { name: 'instagram' as const, url: '#' },
+    { name: 'linkedin' as const, url: 'https://www.linkedin.com/in/dheeraj-galani-68006438b?utm_source=share_via&utm_content=profile&utm_medium=member_ios' },
+    { name: 'facebook' as const, url: 'https://www.facebook.com/people/DGInternational/61568043115188/?mibextid=wwXIfr&rdid=qCdKZMdq5CyyrdTq&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18JypDjdZz%2F%3Fmibextid%3DwwXIfr%26ref%3D1' },
+    { name: 'instagram' as const, url: 'https://www.instagram.com/dginternational_india?igsh=eHVyeDZyOXltcHdw&utm_source=qr' },
   ];
 
   return (

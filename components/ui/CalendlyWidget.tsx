@@ -10,7 +10,7 @@ interface CalendlyWidgetProps {
 }
 
 export default function CalendlyWidget({
-  calendlyUrl = 'https://calendly.com/YOUR_CALENDLY_USERNAME/strategy-call',
+  calendlyUrl = 'https://calendly.com/dginternational2022',
   buttonText = 'Book Strategy Call',
   className = '',
 }: CalendlyWidgetProps) {
