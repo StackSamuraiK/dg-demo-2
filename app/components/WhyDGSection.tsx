@@ -70,7 +70,7 @@ const notFor = [
 
 export default function WhyDGSection() {
   return (
-    <section className="py-20 px-6 md:px-10 bg-[#0B1F3A] relative">
+    <section className="py-20 px-6 md:px-10 bg-[#163A66] relative">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14 reveal">
           <span className="section-label block mb-4">Why DG International</span>
@@ -87,7 +87,7 @@ export default function WhyDGSection() {
           {whyItems?.map((item) => (
             <div
               key={item?.id}
-              className="bg-[#0B1F3A] p-10 flex flex-col justify-between min-h-60 group hover:bg-[#132F5B] transition-colors duration-300"
+              className="bg-[#163A66] p-10 flex flex-col justify-between min-h-60 group hover:bg-[#132F5B] transition-colors duration-300"
             >
               <div className="mb-auto">
                 {item?.icon}
@@ -114,9 +114,6 @@ export default function WhyDGSection() {
             <ul className="space-y-3">
               {targetFor?.map((item) => (
                 <li key={item} className="flex items-center gap-3 text-sm text-white/70 font-light">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <polygon points="7,0 14,7 7,14 0,7" fill="#D4AF37" />
-                  </svg>
                   {item}
                 </li>
               ))}
@@ -129,9 +126,6 @@ export default function WhyDGSection() {
             <ul className="space-y-3">
               {notFor?.map((item) => (
                 <li key={item} className="flex items-center gap-3 text-sm text-white/30 font-light">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 2l8 8M10 2l-8 8" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
                   {item}
                 </li>
               ))}

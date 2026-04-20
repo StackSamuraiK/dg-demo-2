@@ -7,6 +7,7 @@ interface Service {
   num: string;
   title: string;
   desc: string;
+  whoFor: string;
   tags: string[];
   icon: React.ReactNode;
 }
@@ -23,6 +24,7 @@ const services: Service[] = [
     num: '01',
     title: 'Trade Facilitation',
     desc: 'Connecting verified buyers and suppliers across India, UAE, and ASEAN. Commission-only model — we earn when you do.',
+    whoFor: 'For exporters, importers, and cross-border traders',
     tags: ['India', 'UAE', 'ASEAN', 'Commission-Only'],
     icon: (
       <GoldIcon>
@@ -38,6 +40,7 @@ const services: Service[] = [
     num: '02',
     title: 'Global Sourcing Advisory',
     desc: 'Supplier verification, quality control, negotiation support. From manufacturer to final delivery — end-to-end sourcing clarity.',
+    whoFor: 'For manufacturers and product businesses',
     tags: ['Verification', 'Quality Control', 'Negotiation'],
     icon: (
       <GoldIcon>
@@ -53,6 +56,7 @@ const services: Service[] = [
     num: '03',
     title: 'Singapore Structuring',
     desc: 'Holding companies, banking alignment, global revenue flow. Singapore as the apex of your international structure.',
+    whoFor: 'For HNIs and businesses expanding globally',
     tags: ['Holding Co.', 'Banking', 'Revenue Flow'],
     icon: (
       <GoldIcon>
@@ -69,6 +73,7 @@ const services: Service[] = [
     num: '04',
     title: 'UAE & Hong Kong Setup',
     desc: 'Jurisdiction strategy plus full execution. Free zone selection, banking introduction, regulatory compliance.',
+    whoFor: 'For businesses entering Middle East and Asia markets',
     tags: ['UAE', 'Hong Kong', 'Free Zone', 'Banking'],
     icon: (
       <GoldIcon>
@@ -84,6 +89,7 @@ const services: Service[] = [
     num: '05',
     title: 'Dubai Investment Advisory',
     desc: 'Selective real estate opportunities aligned with your global structuring objectives. Not speculative — strategic.',
+    whoFor: 'For HNIs seeking strategic investments',
     tags: ['Real Estate', 'Strategic', 'HNI'],
     icon: (
       <GoldIcon>
@@ -106,7 +112,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 bg-[#0B1F3A] relative overflow-hidden">
+    <section id="services" className="py-20 bg-[#163A66] relative overflow-hidden">
       <div className="noise-overlay" />
 
       {/* Dark navy inner section */}
@@ -176,9 +182,14 @@ export default function ServicesSection() {
                   >
                     {svc.title}
                   </h3>
-                  <p className="text-sm text-white/50 leading-relaxed font-light">
+                  <p className="text-sm text-white/50 leading-relaxed font-light mb-4">
                     {svc.desc}
                   </p>
+                  <div className="mb-5">
+                    <p className="text-xs text-[#D4AF37]/80 font-medium">
+                      {svc.whoFor}
+                    </p>
+                  </div>
                 </div>
 
                 <div>
@@ -196,7 +207,7 @@ export default function ServicesSection() {
                     href="#contact"
                     className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/40 group-hover:text-[#D4AF37] transition-colors duration-300"
                   >
-                    Enquire
+                    Discuss This Service
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                       <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>

@@ -23,7 +23,7 @@ const stats = [
 
 export default function GlobalPresenceSection() {
   return (
-    <section id="presence" className="py-20 px-4 md:px-8 bg-[#0B1F3A] relative">
+    <section id="presence" className="py-20 px-4 md:px-8 bg-[#163A66] relative">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14 reveal">
           <span className="section-label block mb-4">Global Presence</span>
@@ -51,7 +51,7 @@ export default function GlobalPresenceSection() {
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105 brightness-75"
               sizes="(max-width: 768px) 100vw, 50vw" />
             
-            <div className="absolute inset-0 bg-linear-to-t from-[#0B1F3A]/70 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-[#163A66]/70 via-transparent to-transparent" />
 
             {/* Gold nodes on map */}
             {markets?.map((m) =>
@@ -72,7 +72,6 @@ export default function GlobalPresenceSection() {
               <line x1="408" y1="260" x2="330" y2="225" stroke="#D4AF37" strokeWidth="0.8" strokeDasharray="4,4" />
               <line x1="408" y1="260" x2="468" y2="300" stroke="#D4AF37" strokeWidth="0.8" strokeDasharray="4,4" />
               <line x1="468" y1="300" x2="498" y2="230" stroke="#D4AF37" strokeWidth="0.8" strokeDasharray="4,4" />
-              <line x1="468" y1="300" x2="480" y2="285" stroke="#D4AF37" strokeWidth="0.8" strokeDasharray="4,4" />
             </svg>
 
             <div className="absolute bottom-5 left-5">
@@ -89,8 +88,8 @@ export default function GlobalPresenceSection() {
               fill
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105 brightness-60"
               sizes="(max-width: 768px) 50vw, 25vw" />
-            
-            <div className="absolute inset-0 bg-linear-to-t from-[#0B1F3A]/80 via-[#0B1F3A]/30 to-transparent" />
+
+            <div className="absolute inset-0 bg-linear-to-t from-[#163A66]/80 via-[#163A66]/30 to-transparent" />
             <div className="absolute bottom-4 left-4">
               <p
                 className="font-serif text-base text-white font-light"
@@ -111,7 +110,7 @@ export default function GlobalPresenceSection() {
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105 brightness-60"
               sizes="(max-width: 768px) 50vw, 25vw" />
             
-            <div className="absolute inset-0 bg-linear-to-t from-[#0B1F3A]/80 via-[#0B1F3A]/20 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-[#163A66]/80 via-[#163A66]/20 to-transparent" />
             <div className="absolute bottom-4 left-4">
               <p
                 className="font-serif text-base text-white font-light"
@@ -131,8 +130,8 @@ export default function GlobalPresenceSection() {
               fill
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105 brightness-60"
               sizes="(max-width: 768px) 50vw, 25vw" />
-            
-            <div className="absolute inset-0 bg-linear-to-t from-[#0B1F3A]/80 via-[#0B1F3A]/30 to-transparent" />
+
+            <div className="absolute inset-0 bg-linear-to-t from-[#163A66]/80 via-[#163A66]/30 to-transparent" />
             <div className="absolute bottom-4 left-4">
               <p
                 className="font-serif text-base text-white font-light"
@@ -165,7 +164,7 @@ export default function GlobalPresenceSection() {
           {stats?.map((stat) =>
           <div
             key={stat?.label}
-            className="bg-[#0B1F3A] p-8 text-center hover:bg-[#132F5B] transition-colors duration-300">
+            className="bg-[#163A66] p-8 text-center hover:bg-[#132F5B] transition-colors duration-300">
             
               <div
               className="text-4xl font-serif text-[#D4AF37] mb-2"

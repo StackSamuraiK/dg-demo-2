@@ -3,51 +3,48 @@ import React from 'react';
 const steps = [
   {
     num: '01',
-    title: 'Diagnose',
-    subtitle: 'Business Model Analysis',
-    desc: 'We map your current structure — capital flows, jurisdictions, counterparties, and gaps. No assumptions. Fact-based.',
+    title: 'Understand',
+    subtitle: 'Business Deep-Dive',
+    desc: 'We learn your business inside out — goals, challenges, market position, and vision. No assumptions. Deep understanding first.',
   },
   {
     num: '02',
-    title: 'Design',
-    subtitle: 'Structure & Sourcing Plan',
-    desc: 'A bespoke cross-border structure tailored to your trade volume, capital base, and expansion horizon.',
+    title: 'Structure',
+    subtitle: 'Strategy Framework',
+    desc: 'A comprehensive strategy tailored to your unique context. We map the path forward with clear milestones and measurable outcomes.',
   },
   {
     num: '03',
     title: 'Execute',
-    subtitle: 'With Verified Partners',
-    desc: 'Legal, banking, supplier, and regulatory execution through our vetted network across all five jurisdictions.',
+    subtitle: 'Implementation',
+    desc: 'Hands-on execution of the strategy. We work alongside your team, ensuring seamless implementation and immediate impact.',
   },
   {
     num: '04',
-    title: 'Advise',
-    subtitle: 'Ongoing Advisory',
-    desc: 'Markets shift. Regulations change. We stay engaged — not transactional. Your structure evolves with your business.',
+    title: 'Support',
+    subtitle: 'Ongoing Partnership',
+    desc: 'Markets evolve. Challenges emerge. We remain engaged — not transactional. Your success is our ongoing commitment.',
   },
 ];
 
-export default function ProcessSection() {
+export default function HowItWorksSection() {
   return (
-    <section id="process" className="py-20 px-6 md:px-10 bg-[#163A66] relative">
+    <section id="how-it-works" className="py-20 px-6 md:px-10 bg-[#0B1F3A] relative">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
           {/* Left label */}
           <div className="lg:col-span-4 reveal lg:sticky lg:top-32">
-            <span className="section-label block mb-5">How We Work</span>
+            <span className="section-label block mb-5">Our Process</span>
             <h2
               className="font-serif text-4xl md:text-5xl font-light tracking-tight text-white leading-[1.05] mb-6"
               style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
             >
-              Four Phases.
+              How It
               <br />
-              <span className="italic text-white/50">One</span>
-              <br />
-              <span className="italic text-white/50">Outcome.</span>
+              <span className="italic text-white/50">Works.</span>
             </h2>
             <p className="text-sm text-white/50 leading-relaxed font-light max-w-xs">
-              Methodical. Not rushed. We invest time in understanding before we
-              recommend.
+              A proven methodology refined over decades of advisory across global markets.
             </p>
           </div>
 

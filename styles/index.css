@@ -3,15 +3,15 @@
 
 
 :root {
-  --background: #0B1F3A;
+  --background: #163A66;
   --foreground: #FFFFFF;
-  --primary: #0B1F3A;
+  --primary: #163A66;
   --primary-foreground: #FFFFFF;
   --secondary: #132F5B;
   --secondary-foreground: #FFFFFF;
   --accent: #D4AF37;
   --accent-dark: #C9A227;
-  --accent-foreground: #0B1F3A;
+  --accent-foreground: #163A66;
   --muted: #6B7280;
   --muted-foreground: #9CA3AF;
   --card: #132F5B;
@@ -22,7 +22,7 @@
   --radius: 0.75rem;
   --font-sans: 'DM Sans', sans-serif;
   --light-bg: #F5F7FA;
-  --light-foreground: #0B1F3A;
+  --light-foreground: #163A66;
 }
 
 @layer base {

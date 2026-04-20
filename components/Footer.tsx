@@ -1,10 +1,11 @@
 import React from 'react';
 import AppLogo from '@/components/ui/AppLogo';
+import SocialLinks from '@/components/ui/SocialLinks';
 
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#1E3A5F] bg-[#0B1F3A] py-16 px-6 md:px-10">
+    <footer className="border-t border-[#1E3A5F] bg-[#163A66] py-16 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         {/* Pattern 7: Arc Browser Split */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
@@ -22,6 +23,38 @@ export default function Footer() {
             <p className="text-xs text-white/30 font-light max-w-70 leading-relaxed">
               Trusted Partner. Reliable Execution. Global Growth.
             </p>
+            {/* Contact Emails */}
+            <div className="flex flex-col gap-1 mt-2">
+              <a
+                href="mailto:info@dginternational.com"
+                className="text-xs text-white/40 hover:text-[#D4AF37] transition-colors duration-200"
+              >
+                info@dginternational.com
+              </a>
+              <a
+                href="mailto:dginternational2022@gmail.com"
+                className="text-xs text-white/40 hover:text-[#D4AF37] transition-colors duration-200"
+              >
+                dginternational2022@gmail.com
+              </a>
+            </div>
+          </div>
+
+          {/* Middle: Social Links - Prominent Placement */}
+          <div className="flex flex-col items-center gap-3">
+            <span className="text-xs text-white/30 font-medium tracking-wide uppercase">
+              Connect With Us
+            </span>
+            <SocialLinks
+              links={[
+                { name: 'linkedin', url: '#', ariaLabel: 'LinkedIn' },
+                { name: 'facebook', url: '#', ariaLabel: 'Facebook' },
+                { name: 'instagram', url: '#', ariaLabel: 'Instagram' }
+              ]}
+              className="bg-white/5 rounded-2xl px-6 py-4 hover:bg-white/10 transition-all duration-300"
+              iconSize={28}
+              showLabels={false}
+            />
           </div>
 
           {/* Right: Links */}

@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import AppLogo from '@/components/ui/AppLogo';
 import Link from 'next/link';
+import CalendlyWidget from '@/components/ui/CalendlyWidget';
+import SocialLinks from '@/components/ui/SocialLinks';
+import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -21,12 +24,18 @@ export default function Header() {
     { label: 'Contact', href: '#contact' },
   ];
 
+  const socialLinks = [
+    { name: 'linkedin' as const, url: '#' },
+    { name: 'facebook' as const, url: '#' },
+    { name: 'instagram' as const, url: '#' },
+  ];
+
   return (
     <>
       <nav
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           scrolled
-            ? 'py-3 bg-[#0B1F3A]/95 backdrop-blur-md border-b border-[#1E3A5F] shadow-lg shadow-black/20'
+            ? 'py-3 bg-[#163A66]/95 backdrop-blur-md border-b border-[#1E3A5F] shadow-lg shadow-black/20'
             : 'py-5 bg-transparent'
         }`}
       >
@@ -63,14 +72,23 @@ export default function Header() {
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="hidden md:block">
+          {/* CTA + WhatsApp + Social Links */}
+          <div className="hidden md:flex items-center gap-4">
+            <SocialLinks links={socialLinks} className="gap-3" iconSize={20} />
             <a
-              href="#contact"
-              className="gold-fill-btn px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide"
+              href="https://wa.me/919997906055"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
+              className="flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 hover:scale-110"
+              style={{ backgroundColor: '#D4AF37' }}
             >
-              Book Consultation
+              <ChatBubbleLeftRightIcon className="w-5 h-5 text-white" />
             </a>
+            <CalendlyWidget
+              buttonText="Book Strategy Call"
+              className="gold-fill-btn px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide"
+            />
           </div>
 
           {/* Hamburger */}
@@ -93,7 +111,7 @@ export default function Header() {
       </nav>
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#0B1F3A]/98 backdrop-blur-lg flex flex-col items-center justify-center gap-8 md:hidden">
+        <div className="fixed inset-0 z-40 bg-[#163A66]/98 backdrop-blur-lg flex flex-col items-center justify-center gap-8 md:hidden">
           {navLinks?.map((link) => (
             <a
               key={link?.label}
@@ -105,13 +123,34 @@ export default function Header() {
               {link?.label}
             </a>
           ))}
+
+          {/* WhatsApp Link in Mobile Menu */}
           <a
-            href="#contact"
+            href="https://wa.me/919997906055"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
-            className="gold-fill-btn px-8 py-3 rounded-full text-base font-semibold mt-4"
+            className="flex items-center gap-3 text-white hover:text-[#D4AF37] transition-colors duration-200"
           >
-            Book Consultation
+            <ChatBubbleLeftRightIcon className="w-6 h-6" />
+            <span className="text-lg font-medium">Chat on WhatsApp</span>
           </a>
+
+          {/* Social Links in Mobile Menu */}
+          <SocialLinks
+            links={socialLinks}
+            className="gap-6 mt-4"
+            iconSize={28}
+            showLabels={false}
+          />
+
+          {/* Calendly CTA in Mobile Menu */}
+          <div onClick={(e) => e.stopPropagation()}>
+            <CalendlyWidget
+              buttonText="Book Strategy Call"
+              className="gold-fill-btn px-8 py-3 rounded-full text-base font-semibold mt-4"
+            />
+          </div>
         </div>
       )}
     </>
