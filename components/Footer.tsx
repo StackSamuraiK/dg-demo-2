@@ -26,10 +26,10 @@ export default function Footer() {
             {/* Contact Emails */}
             <div className="flex flex-col gap-1 mt-2">
               <a
-                href="mailto:info@dginternational.com"
+                href="mailto:dhirajgalani@dginternational.in"
                 className="text-xs text-white/40 hover:text-[#D4AF37] transition-colors duration-200"
               >
-                info@dginternational.com
+                dhirajgalani@dginternational.in
               </a>
               <a
                 href="mailto:dginternational2022@gmail.com"
