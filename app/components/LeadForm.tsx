@@ -12,10 +12,12 @@ const services = [
   'General Enquiry',
 ];
 
-// International phone number validation
+// International phone number validation - more lenient
 const validatePhone = (phone: string): boolean => {
-  const phoneRegex = /^\+?[1-9]\d{1,14}$/;
-  return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+  if (!phone || phone.trim() === '') return false;
+  const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+  // Allow more flexible formats: 10+ digits, optionally starting with +
+  return /^\+?\d{10,15}$/.test(cleanPhone);
 };
 
 // Email validation
@@ -36,12 +38,18 @@ export default function LeadForm() {
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [errors, setErrors] = useState<{
+    name?: string;
     email?: string;
     whatsapp?: string;
+    country?: string;
+    service?: string;
   }>({});
   const [touched, setTouched] = useState<{
     email?: boolean;
     whatsapp?: boolean;
+    name?: boolean;
+    country?: boolean;
+    service?: boolean;
   }>({});
 
   const handleChange = (
@@ -93,11 +101,21 @@ export default function LeadForm() {
     // Validate all fields
     const newErrors: typeof errors = {};
 
+    // Check required fields
+    if (!formData.name?.trim()) {
+      newErrors.name = 'Please enter your name';
+    }
     if (!validateEmail(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-    if (!validatePhone(formData.whatsapp)) {
-      newErrors.whatsapp = 'Please enter a valid international number (e.g., +91 9876543210)';
+    if (!formData.whatsapp?.trim() || !validatePhone(formData.whatsapp)) {
+      newErrors.whatsapp = 'Please enter a valid phone number (e.g., +91 9876543210)';
+    }
+    if (!formData.country?.trim()) {
+      newErrors.country = 'Please enter your country';
+    }
+    if (!formData.service?.trim()) {
+      newErrors.service = 'Please select a service';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -110,22 +128,23 @@ export default function LeadForm() {
     setSubmitError(null);
 
     try {
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      // Log the data being sent for debugging
+      console.log('Submitting form data:', JSON.stringify(formData, null, 2));
 
-      if (!serviceId || !templateId || serviceId === 'your_service_id_here' || templateId === 'your_template_id_here') {
-        throw new Error('EmailJS is not configured. Please set up your environment variables.');
+      // Submit to Google Sheets via SheetDB API
+      const response = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Failed to submit form');
       }
-
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        whatsapp: formData.whatsapp,
-        country: formData.country,
-        service: formData.service,
-      };
-
-      await emailjs.send(serviceId, templateId, templateParams);
 
       setSubmitted(true);
       setFormData({
@@ -136,7 +155,7 @@ export default function LeadForm() {
         service: '',
       });
     } catch (error) {
-      console.error('EmailJS error:', error);
+      console.error('Form submission error:', error);
       setSubmitError(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
     } finally {
       setLoading(false);
@@ -200,8 +219,20 @@ export default function LeadForm() {
           placeholder="e.g., Arjun Mehta"
           required
           aria-required="true"
-          className="w-full bg-white/5 border border-[#1E3A5F] rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all duration-300 font-light hover:border-[#D4AF37]/30"
+          className={`w-full bg-white/5 border rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:ring-1 transition-all duration-300 font-light hover:border-[#D4AF37]/30 ${
+            errors.name
+              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500'
+              : 'border-[#1E3A5F] focus:border-[#D4AF37] focus:ring-[#D4AF37]'
+          }`}
         />
+        {errors.name && (
+          <p className="text-[10px] text-red-400 mt-1.5 flex items-center gap-1 animate-slide-down">
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            {errors.name}
+          </p>
+        )}
       </div>
 
       {/* Email Field */}
@@ -288,8 +319,20 @@ export default function LeadForm() {
           placeholder="e.g., India"
           required
           aria-required="true"
-          className="w-full bg-white/5 border border-[#1E3A5F] rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all duration-300 font-light hover:border-[#D4AF37]/30"
+          className={`w-full bg-white/5 border rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:ring-1 transition-all duration-300 font-light hover:border-[#D4AF37]/30 ${
+            errors.country
+              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500'
+              : 'border-[#1E3A5F] focus:border-[#D4AF37] focus:ring-[#D4AF37]'
+          }`}
         />
+        {errors.country && (
+          <p className="text-[10px] text-red-400 mt-1.5 flex items-center gap-1 animate-slide-down">
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            {errors.country}
+          </p>
+        )}
       </div>
 
       {/* Service Dropdown */}
@@ -304,7 +347,11 @@ export default function LeadForm() {
           onChange={handleChange}
           required
           aria-required="true"
-          className="w-full bg-[#163A66] border border-[#1E3A5F] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all duration-300 font-light appearance-none cursor-pointer hover:border-[#D4AF37]/30"
+          className={`w-full bg-[#163A66] border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 font-light appearance-none cursor-pointer hover:border-[#D4AF37]/30 ${
+            errors.service
+              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500'
+              : 'border-[#1E3A5F] focus:border-[#D4AF37] focus:ring-[#D4AF37]'
+          }`}
           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23D4AF37' strokeWidth='1.5' fill='none' strokeLinecap='round'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 16px center' }}
         >
           <option value="" disabled className="text-white/40">
@@ -316,6 +363,14 @@ export default function LeadForm() {
             </option>
           ))}
         </select>
+        {errors.service && (
+          <p className="text-[10px] text-red-400 mt-1.5 flex items-center gap-1 animate-slide-down">
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            {errors.service}
+          </p>
+        )}
       </div>
 
       {/* Submit Button */}

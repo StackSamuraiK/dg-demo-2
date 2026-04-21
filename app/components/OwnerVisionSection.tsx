@@ -25,12 +25,12 @@ export default function OwnerVisionSection({ className = '' }: OwnerVisionSectio
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Left Side - Owner Image */}
             <div className="relative order-2 lg:order-1">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#D4AF37]/30 shadow-2xl relative">
+              <div className="rounded-2xl overflow-hidden border-2 border-[#D4AF37]/30 shadow-2xl relative inline-block">
                 {/* Placeholder image - professional business portrait */}
                 <img
-                  src="/hero-image.jpeg"
+                  src="/vision-image.jpeg"
                   alt="DG International Founder - Professional portrait"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-contain"
                 />
 
                 {/* Scrim overlay for subtle darkening */}
